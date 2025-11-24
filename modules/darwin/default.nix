@@ -17,6 +17,10 @@
       "obsidian"
       "discord"
       "bitwarden"
+      "google-chat"
+      "ytmdesktop-youtube-music"
+      "microsoft-office"
+      "adobe-acrobat-reader"
     ];
   };
 
@@ -35,7 +39,14 @@
       wvous-br-corner = 1;
       persistent-apps = [
         "/Applications/Google Chrome.app"
-        "/Applications/iTerm.app"
+        "/Applications/Google Chat.app"
+        "/Applications/Obsidian.app"
+        "/Applications/YouTube Music Desktop.app"
+      ];
+      persistent-others = [
+        "/Users/${userSettings.username}/Downloads"
+        "/Users/${userSettings.username}/Documents"
+        "/Users/${userSettings.username}/Applications/Productivity"
       ];
     };
     finder = {
@@ -59,6 +70,16 @@
     loginwindow.LoginwindowText = "Rise8 Workstation";
   };
   
+  system.activationScripts.postActivation.text = ''
+    # Productivity Folder
+    mkdir -p /Users/${userSettings.username}/Applications/Productivity
+    ln -sf "/Applications/Microsoft Word.app" "/Users/${userSettings.username}/Applications/Productivity/"
+    ln -sf "/Applications/Microsoft Excel.app" "/Users/${userSettings.username}/Applications/Productivity/"
+    ln -sf "/Applications/Microsoft PowerPoint.app" "/Users/${userSettings.username}/Applications/Productivity/"
+    ln -sf "/Applications/Adobe Acrobat Reader.app" "/Users/${userSettings.username}/Applications/Productivity/"
+    ln -sf "/Users/${userSettings.username}/Applications/Chrome Apps.localized/Quicken Simplifi.app" "/Users/${userSettings.username}/Applications/Productivity/"
+  '';
+
   # services.nix-daemon.enable = true; # Deprecated
   nix.enable = true;
   nix.settings.experimental-features = "nix-command flakes";

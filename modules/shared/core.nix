@@ -21,6 +21,7 @@
     python3
     mise
     direnv
+    gemini-cli
   ];
 
   programs.zsh = {

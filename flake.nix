@@ -23,6 +23,7 @@
           modules = [
             ./modules/darwin/default.nix
             ./modules/darwin/usecase-meet.nix
+
             home-manager.darwinModules.home-manager
             {
               users.users.${userSettings.username}.home = "/Users/${userSettings.username}";
@@ -48,6 +49,7 @@
             ./modules/darwin/default.nix
             ./modules/darwin/machine-studio.nix
             ./modules/darwin/usecase-develop.nix
+
             home-manager.darwinModules.home-manager
             {
               users.users.${userSettings.username}.home = "/Users/${userSettings.username}";

@@ -41,9 +41,9 @@
 
   programs.git = {
     enable = true;
-    userName = userSettings.gitName;
-    userEmail = userSettings.email;
-    extraConfig = {
+    settings = {
+      user.name = userSettings.gitName;
+      user.email = userSettings.email;
       init.defaultBranch = "main";
       pull.rebase = true;
       core.editor = "vim";

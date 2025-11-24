@@ -19,7 +19,7 @@
       "bitwarden"
       "google-chat"
       "ytmdesktop-youtube-music"
-      "microsoft-office"
+      # "microsoft-office"  # Install manually if needed - automated install often fails
       "adobe-acrobat-reader"
     ];
   };
@@ -66,6 +66,9 @@
     screencapture = {
       location = "~/Desktop/Screenshots";
       type = "png";
+      disable-shadow = true;
+      # Save screenshots to clipboard instead of file
+      target = "clipboard";
     };
     loginwindow.LoginwindowText = "Rise8 Workstation";
   };
@@ -73,11 +76,11 @@
   system.activationScripts.postActivation.text = ''
     # Productivity Folder
     mkdir -p /Users/${userSettings.username}/Applications/Productivity
-    ln -sf "/Applications/Microsoft Word.app" "/Users/${userSettings.username}/Applications/Productivity/"
-    ln -sf "/Applications/Microsoft Excel.app" "/Users/${userSettings.username}/Applications/Productivity/"
-    ln -sf "/Applications/Microsoft PowerPoint.app" "/Users/${userSettings.username}/Applications/Productivity/"
-    ln -sf "/Applications/Adobe Acrobat Reader.app" "/Users/${userSettings.username}/Applications/Productivity/"
-    ln -sf "/Users/${userSettings.username}/Applications/Chrome Apps.localized/Quicken Simplifi.app" "/Users/${userSettings.username}/Applications/Productivity/"
+    ln -sf "/Applications/Microsoft Word.app" "/Users/${userSettings.username}/Applications/Productivity/" 2>/dev/null || true
+    ln -sf "/Applications/Microsoft Excel.app" "/Users/${userSettings.username}/Applications/Productivity/" 2>/dev/null || true
+    ln -sf "/Applications/Microsoft PowerPoint.app" "/Users/${userSettings.username}/Applications/Productivity/" 2>/dev/null || true
+    ln -sf "/Applications/Adobe Acrobat Reader.app" "/Users/${userSettings.username}/Applications/Productivity/" 2>/dev/null || true
+    ln -sf "/Users/${userSettings.username}/Applications/Chrome Apps.localized/Quicken Simplifi.app" "/Users/${userSettings.username}/Applications/Productivity/" 2>/dev/null || true
   '';
 
   # services.nix-daemon.enable = true; # Deprecated

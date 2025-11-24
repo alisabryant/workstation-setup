@@ -83,8 +83,17 @@
     ln -sf "/Users/${userSettings.username}/Applications/Chrome Apps.localized/Quicken Simplifi.app" "/Users/${userSettings.username}/Applications/Productivity/" 2>/dev/null || true
   '';
 
+
   # services.nix-daemon.enable = true; # Deprecated
   nix.enable = true;
   nix.settings.experimental-features = "nix-command flakes";
+  
+  # Automatic garbage collection to prevent disk space buildup
+  nix.gc = {
+    automatic = true;
+    interval = { Weekday = 0; Hour = 3; Minute = 0; }; # Sunday at 3 AM
+    options = "--delete-older-than 7d";
+  };
+  
   system.stateVersion = 5;
 }

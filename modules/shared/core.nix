@@ -41,12 +41,13 @@
 
   programs.git = {
     enable = true;
-    settings = {
-      user.name = userSettings.gitName;
-      user.email = userSettings.email;
+    userName = userSettings.gitName;
+    userEmail = userSettings.email;
+    extraConfig = {
       init.defaultBranch = "main";
       pull.rebase = true;
       core.editor = "vim";
+      credential.helper = "osxkeychain";
     };
   };
 

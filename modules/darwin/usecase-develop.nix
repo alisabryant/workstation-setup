@@ -7,7 +7,7 @@
      "visual-studio-code"
      
   ];
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     docker
     docker-compose
     podman

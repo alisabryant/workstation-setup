@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   homebrew.casks = [
-    "corsair-icue"
+
     "elgato-stream-deck"
     
   ];

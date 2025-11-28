@@ -1,2 +1,3 @@
 result
 modules/shared/secrets.nix
+node_modules

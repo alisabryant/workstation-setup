@@ -1,0 +1,23 @@
+{
+  "name": "workstation-setup",
+  "version": "1.0.0",
+  "description": "This repository manages a **Unified Workstation Configuration** for macOS and Linux. It uses **Nix Flakes**, **Nix-Darwin**, and **Home Manager** to ensure a reproducible, identical setup on any machine.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alisabryant/workstation-setup.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alisabryant/workstation-setup/issues"
+  },
+  "homepage": "https://github.com/alisabryant/workstation-setup#readme",
+  "devDependencies": {
+    "@fission-ai/openspec": "github:Fission-AI/OpenSpec"
+  }
+}

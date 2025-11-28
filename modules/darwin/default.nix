@@ -7,7 +7,7 @@
   
   homebrew = {
     enable = true;
-    onActivation.cleanup = "zap";
+    onActivation.cleanup = "uninstall";
     casks = [
       "google-chrome"
       "google-drive"
@@ -20,7 +20,7 @@
       "google-chat"
       "ytmdesktop-youtube-music"
       # "microsoft-office"  # Install manually if needed - automated install often fails
-      "adobe-acrobat-reader"
+      # "adobe-acrobat-reader"
     ];
   };
 
@@ -39,9 +39,9 @@
       wvous-br-corner = 1;
       persistent-apps = [
         "/Applications/Google Chrome.app"
-        "/Applications/Google Chat.app"
+        "/Applications/Chat.app"
         "/Applications/Obsidian.app"
-        "/Applications/YouTube Music Desktop.app"
+        "/Applications/YouTube Music Desktop App.app"
       ];
       persistent-others = [
         "/Users/${userSettings.username}/Downloads"
@@ -70,7 +70,7 @@
       # Save screenshots to clipboard instead of file
       target = "clipboard";
     };
-    loginwindow.LoginwindowText = "Rise8 Workstation";
+    loginwindow.LoginwindowText = "Seventeen Sierra Workstation";
   };
   
   system.activationScripts.postActivation.text = ''

@@ -18,7 +18,13 @@
     fzf
     lazygit
     gh
-    python3
+    (python3.withPackages (ps: with ps; [
+      pip
+      requests
+      pandas
+      pyyaml
+      ipykernel
+    ]))
     mise
     direnv
     gemini-cli

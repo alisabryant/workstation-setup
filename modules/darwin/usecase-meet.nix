@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, userSettings, ... }: {
 
   # 1. Install the Chat Apps
   homebrew.casks = [
@@ -7,14 +7,14 @@
     "signal"
     "microsoft-teams"
     "discord"
-    "google-chat"
     # Add "whatsapp" or "telegram" here if you use them!
   ];
 
   # 2. Group them on the Dock
   system.activationScripts.createChatGroup.text = ''
     echo "Grouping Chat Apps..."
-    CHAT_FOLDER="$HOME/Applications/Messaging"
+    echo "Grouping Chat Apps..."
+    CHAT_FOLDER="/Users/${userSettings.username}/Applications/Messaging"
     mkdir -p "$CHAT_FOLDER"
     
     # Clear old links to keep it fresh
@@ -27,7 +27,8 @@
     ln -sf "/Applications/Signal.app" "$CHAT_FOLDER/" || true
     ln -sf "/Applications/Microsoft Teams.app" "$CHAT_FOLDER/" || true
     ln -sf "/Applications/Discord.app" "$CHAT_FOLDER/" || true
-    ln -sf "/Applications/Google Chat.app" "$CHAT_FOLDER/" || true
+    ln -sf "/Users/${userSettings.username}/Applications/Chrome Apps.localized/Google Chat.app" "$CHAT_FOLDER/" || true
+    chown -R ${userSettings.username}:staff "$CHAT_FOLDER"
   '';
 
   system.activationScripts.addChatStack.text = ''
@@ -38,7 +39,7 @@
         echo "Pinning Messaging Stack to Dock..."
         # --view grid: Shows icons in a grid
         # --display stack: Shows a stack of icons when closed
-        dockutil --add "$HOME/Applications/Messaging" --view grid --display stack --sort name --folder --no-restart
+        dockutil --add "/Users/${userSettings.username}/Applications/Messaging" --view grid --display stack --sort name --folder --no-restart
         killall Dock
       fi
     fi

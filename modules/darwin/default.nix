@@ -17,8 +17,6 @@
       "obsidian"
       "discord"
       "bitwarden"
-      "google-chat"
-      "ytmdesktop-youtube-music"
       # "microsoft-office"  # Install manually if needed - automated install often fails
       # "adobe-acrobat-reader"
     ];
@@ -39,9 +37,9 @@
       wvous-br-corner = 1;
       persistent-apps = [
         "/Applications/Google Chrome.app"
-        "/Applications/Chat.app"
+        "/Users/${userSettings.username}/Applications/Chrome Apps.localized/Google Chat.app"
         "/Applications/Obsidian.app"
-        "/Applications/YouTube Music Desktop App.app"
+        "/Users/${userSettings.username}/Applications/Chrome Apps.localized/YouTube Music.app"
       ];
       persistent-others = [
         "/Users/${userSettings.username}/Downloads"
@@ -81,6 +79,7 @@
     ln -sf "/Applications/Microsoft PowerPoint.app" "/Users/${userSettings.username}/Applications/Productivity/" 2>/dev/null || true
     ln -sf "/Applications/Adobe Acrobat Reader.app" "/Users/${userSettings.username}/Applications/Productivity/" 2>/dev/null || true
     ln -sf "/Users/${userSettings.username}/Applications/Chrome Apps.localized/Quicken Simplifi.app" "/Users/${userSettings.username}/Applications/Productivity/" 2>/dev/null || true
+    chown -R ${userSettings.username}:staff "/Users/${userSettings.username}/Applications/Productivity"
   '';
 
 

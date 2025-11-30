@@ -35,6 +35,7 @@
                 imports = [
                   ./modules/shared/core.nix
                   ./modules/shared/vscode.nix
+                  ./modules/shared/vscode.nix
                 ];
               };
               home-manager.extraSpecialArgs = { inherit userSettings; };

@@ -1,0 +1,120 @@
+# AeroSpace Configuration
+# https://nikitabobko.github.io/AeroSpace/guide
+
+# Start AeroSpace at login
+start-at-login = true
+
+# Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+# Mouse follows focus when focused monitor changes
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+# Gaps between windows (inner-*) and between monitor edges (outer-*).
+[gaps]
+inner.horizontal = 8
+inner.vertical =   8
+outer.left =       8
+outer.bottom =     8
+outer.top =        8
+outer.right =      8
+
+# 'main' binding mode declaration
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+[mode.main.binding]
+
+# Application Launchers (matching your requested hotkeys)
+cmd-return = 'exec-and-forget open -a "iTerm.app"'
+cmd-shift-m = 'exec-and-forget open "/Users/afos/Applications/Chrome Apps.localized/YouTube Music.app"'
+cmd-shift-p = 'exec-and-forget open "https://vault.bitwarden.com"'
+cmd-shift-z = 'exec-and-forget open -a "Zed.app"'
+cmd-shift-c = 'exec-and-forget open -a "Microsoft Outlook.app"'
+cmd-shift-e = 'exec-and-forget open -a "Microsoft Outlook.app"'
+cmd-shift-a = 'exec-and-forget open "https://gemini.google.com"'
+cmd-shift-d = 'exec-and-forget open -a "Discord.app"'
+
+# Media Keys (F7, F8, F9) - Controlling YouTube Music PWA
+# Note: You may need to hold Fn key if "Use F1, F2, etc. as standard function keys" is disabled
+f7 = 'exec-and-forget /Users/afos/Documents/Github/workstation-setup/modules/shared/media-control.sh prev'
+f8 = 'exec-and-forget /Users/afos/Documents/Github/workstation-setup/modules/shared/media-control.sh playpause'
+f9 = 'exec-and-forget /Users/afos/Documents/Github/workstation-setup/modules/shared/media-control.sh next'
+
+# Window Focus (Vim-style navigation)
+alt-h = 'focus left'
+alt-j = 'focus down'
+alt-k = 'focus up'
+alt-l = 'focus right'
+
+# Move Windows
+alt-shift-h = 'move left'
+alt-shift-j = 'move down'
+alt-shift-k = 'move up'
+alt-shift-l = 'move right'
+
+# Resize Windows (enter resize mode)
+alt-shift-r = 'mode resize'
+
+# Workspaces (like virtual desktops)
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
+alt-6 = 'workspace 6'
+alt-7 = 'workspace 7'
+alt-8 = 'workspace 8'
+alt-9 = 'workspace 9'
+
+# Move window to workspace
+alt-shift-1 = 'move-node-to-workspace 1'
+alt-shift-2 = 'move-node-to-workspace 2'
+alt-shift-3 = 'move-node-to-workspace 3'
+alt-shift-4 = 'move-node-to-workspace 4'
+alt-shift-5 = 'move-node-to-workspace 5'
+alt-shift-6 = 'move-node-to-workspace 6'
+alt-shift-7 = 'move-node-to-workspace 7'
+alt-shift-8 = 'move-node-to-workspace 8'
+alt-shift-9 = 'move-node-to-workspace 9'
+
+# Layout
+alt-slash = 'layout tiles horizontal vertical'
+alt-comma = 'layout accordion horizontal vertical'
+
+# Toggle between floating and tiling
+alt-shift-space = 'layout floating tiling'
+
+# Fullscreen
+alt-shift-f = 'fullscreen'
+
+# Balance window sizes
+alt-shift-equal = 'balance-sizes'
+
+# Reload config
+alt-shift-ctrl-r = 'reload-config'
+
+# Resize mode
+[mode.resize.binding]
+h = 'resize width -50'
+j = 'resize height +50'
+k = 'resize height -50'
+l = 'resize width +50'
+equal = 'resize smart +50'
+minus = 'resize smart -50'
+esc = 'mode main'
+enter = 'mode main'
+
+# Workspace to monitor assignment (optional - customize based on your setup)
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
+if.app-id = 'com.googlecode.iterm2'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'dev.zed.Zed'
+if.app-id = 'com.microsoft.VSCode'
+run = 'move-node-to-workspace 3'

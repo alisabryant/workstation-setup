@@ -31,6 +31,11 @@
     nodePackages.typescript
     nodejs
     just
+    zoxide
+    eza
+    lazydocker
+    btop
+    fastfetch
   ];
 
   programs.zsh = {
@@ -46,7 +51,11 @@
     initContent = ''
       eval "$(direnv hook zsh)"
       eval "$(starship init zsh)"
+      eval "$(zoxide init zsh)"
       
+      # Source custom functions
+      source ${./functions.zsh}
+
       # Transient Prompt
       setopt PROMPT_SP
       export STARSHIP_TRANSIENT_PROMPT=true
@@ -61,7 +70,7 @@
       
       scan_timeout = 10;
       
-      format = "$all";
+      format = "$username$hostname$directory$git_branch$git_status$character";
       
       palettes.rosepine = {
         base = "#191724";
@@ -81,15 +90,29 @@
         highlight_high = "#524f67";
       };
 
+      username = {
+        style_user = "bold love";
+        style_root = "bold love";
+        format = "[$user]($style)";
+        show_always = true;
+      };
+
+      hostname = {
+        ssh_only = false;
+        format = "[@$hostname]($style):";
+        style = "bold love";
+      };
+
       character = {
-        success_symbol = "[➜](bold foam)";
-        error_symbol = "[➜](bold love)";
+        success_symbol = "[>](bold foam)";
+        error_symbol = "[>](bold love)";
       };
 
       directory = {
-        style = "bold iris";
+        style = "bold gold";
         truncation_length = 3;
         truncate_to_repo = true;
+        format = "[$path]($style) ";
       };
 
       git_branch = {
@@ -98,7 +121,7 @@
       };
 
       git_status = {
-        style = "bold gold";
+        style = "bold rose";
         conflicted = "🏳";
         ahead = "⇡\${count}";
         behind = "⇣\${count}";
@@ -190,4 +213,7 @@
     enable = true;
     nix-direnv.enable = true;
   };
+
+  # AeroSpace window manager configuration
+  home.file.".aerospace.toml".source = ./aerospace.toml;
 }

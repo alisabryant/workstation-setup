@@ -12,11 +12,12 @@
       "google-chrome"
       "google-drive"
       "adobe-creative-cloud"
-      "rectangle"
       "iterm2"
       "obsidian"
       "discord"
-      "bitwarden"
+      "microsoft-outlook"
+      "nikitabobko/tap/aerospace"  # Tiling window manager with hotkey support
+      "notunes" # Prevents Apple Music from launching
       # "microsoft-office"  # Install manually if needed - automated install often fails
       # "adobe-acrobat-reader"
     ];
@@ -24,7 +25,7 @@
 
   system.defaults = {
     dock = {
-      autohide = true;
+      autohide = false;
       tilesize = 36;
       largesize = 72;
       magnification = true;
@@ -37,9 +38,9 @@
       wvous-br-corner = 1;
       persistent-apps = [
         "/Applications/Google Chrome.app"
-        "/Users/${userSettings.username}/Applications/Chrome Apps.localized/Google Chat.app"
+        "/Users/afos/Applications/Chrome Apps.localized/Google Chat.app"
         "/Applications/Obsidian.app"
-        "/Users/${userSettings.username}/Applications/Chrome Apps.localized/YouTube Music.app"
+        "/Users/afos/Applications/Chrome Apps.localized/YouTube Music.app"
       ];
       persistent-others = [
         "/Users/${userSettings.username}/Downloads"
@@ -73,6 +74,8 @@
   
   system.activationScripts.postActivation.text = ''
     # Productivity Folder
+    # TODO: Install Microsoft Office manually (automated install often fails)
+    # Download from: https://www.microsoft.com/en-us/microsoft-365/mac/microsoft-365-for-mac
     mkdir -p /Users/${userSettings.username}/Applications/Productivity
     ln -sf "/Applications/Microsoft Word.app" "/Users/${userSettings.username}/Applications/Productivity/" 2>/dev/null || true
     ln -sf "/Applications/Microsoft Excel.app" "/Users/${userSettings.username}/Applications/Productivity/" 2>/dev/null || true
@@ -84,15 +87,15 @@
 
 
   # services.nix-daemon.enable = true; # Deprecated
-  nix.enable = true;
-  nix.settings.experimental-features = "nix-command flakes";
+  nix.enable = false;
+  # nix.settings.experimental-features = "nix-command flakes";
   
   # Automatic garbage collection to prevent disk space buildup
-  nix.gc = {
-    automatic = true;
-    interval = { Weekday = 0; Hour = 3; Minute = 0; }; # Sunday at 3 AM
-    options = "--delete-older-than 7d";
-  };
+  # nix.gc = {
+  #   automatic = true;
+  #   interval = { Weekday = 0; Hour = 3; Minute = 0; }; # Sunday at 3 AM
+  #   options = "--delete-older-than 7d";
+  # };
   
   system.stateVersion = 5;
 }

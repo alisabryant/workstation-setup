@@ -3,11 +3,12 @@
      "zed"
      "firefox"
      "pycharm"
-     "vmware-fusion"
+     # TODO: Install VMware Fusion manually from https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Fusion
+     # "vmware-fusion"  # Requires Broadcom account authentication
      "visual-studio-code"
      
   ];
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     docker
     docker-compose
     podman
@@ -23,6 +24,7 @@
     # Clear old links
     rm -f "$DEV_FOLDER"/*.app
 
+    # Create shortcuts
     # Create shortcuts
     ln -sf "/Applications/Zed.app" "$DEV_FOLDER/" || true
     ln -sf "/Applications/Firefox.app" "$DEV_FOLDER/" || true

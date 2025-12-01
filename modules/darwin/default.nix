@@ -38,9 +38,9 @@
       wvous-br-corner = 1;
       persistent-apps = [
         "/Applications/Google Chrome.app"
-        "/Users/afos/Applications/Chrome Apps.localized/Google Chat.app"
+        "/Users/${userSettings.username}/Applications/Chrome Apps.localized/Google Chat.app"
         "/Applications/Obsidian.app"
-        "/Users/afos/Applications/Chrome Apps.localized/YouTube Music.app"
+        "/Users/${userSettings.username}/Applications/Chrome Apps.localized/YouTube Music.app"
       ];
       persistent-others = [
         "/Users/${userSettings.username}/Downloads"

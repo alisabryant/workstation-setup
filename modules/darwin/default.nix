@@ -1,5 +1,5 @@
 { pkgs, userSettings, ... }: {
-  environment.systemPackages = [ pkgs.dockutil ];
+  environment.systemPackages = [ pkgs.dockutil pkgs.podman ];
 
   # Required for newer nix-darwin versions
   users.users.${userSettings.username}.home = "/Users/${userSettings.username}";
@@ -23,9 +23,10 @@
     ];
   };
 
+
   system.defaults = {
     dock = {
-      autohide = false;
+      autohide = true;
       tilesize = 36;
       largesize = 72;
       magnification = true;
@@ -83,6 +84,28 @@
     ln -sf "/Applications/Adobe Acrobat Reader.app" "/Users/${userSettings.username}/Applications/Productivity/" 2>/dev/null || true
     ln -sf "/Users/${userSettings.username}/Applications/Chrome Apps.localized/Quicken Simplifi.app" "/Users/${userSettings.username}/Applications/Productivity/" 2>/dev/null || true
     chown -R ${userSettings.username}:staff "/Users/${userSettings.username}/Applications/Productivity"
+
+    # Podman Setup
+    # Run as the user with proper HOME environment, not root
+    PODMAN_CMD="/run/current-system/sw/bin/podman"
+    USER_NAME="${userSettings.username}"
+    
+    if [ -f "$PODMAN_CMD" ]; then
+      echo "Checking Podman machine status for $USER_NAME..."
+      # Use sudo -Hiu to set HOME environment properly
+      if ! sudo -Hiu "$USER_NAME" "$PODMAN_CMD" machine list 2>/dev/null | grep -q "podman-machine-default"; then
+        echo "Initializing Podman machine..."
+        sudo -Hiu "$USER_NAME" "$PODMAN_CMD" machine init || echo "Podman machine init failed or already exists"
+        sudo -Hiu "$USER_NAME" "$PODMAN_CMD" machine start || echo "Podman machine start failed or already running"
+      else
+        echo "Podman machine already exists."
+        # Ensure it's started
+        if ! sudo -Hiu "$USER_NAME" "$PODMAN_CMD" machine list 2>/dev/null | grep "podman-machine-default" | grep -q "Running"; then
+           echo "Starting Podman machine..."
+           sudo -Hiu "$USER_NAME" "$PODMAN_CMD" machine start || echo "Podman machine already running"
+        fi
+      fi
+    fi
   '';
 
 

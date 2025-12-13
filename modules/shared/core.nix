@@ -36,6 +36,7 @@
     lazydocker
     btop
     fastfetch
+    podman-compose
   ];
 
   programs.zsh = {
@@ -49,6 +50,9 @@
       g = "git";
     };
     initContent = ''
+      # Silence direnv verbose output
+      export DIRENV_LOG_FORMAT=""
+      
       eval "$(direnv hook zsh)"
       eval "$(starship init zsh)"
       eval "$(zoxide init zsh)"

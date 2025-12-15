@@ -227,7 +227,8 @@ To control YouTube Music PWA with your keyboard's media keys:
 
 ### CLI Tools (via Nix)
 - **Shell**: Zsh with Starship prompt, zoxide, eza
-- **Development**: Git, GitHub CLI, Docker, Podman, Mise, Direnv
+- **Development**: Git, GitHub CLI, Mise, Direnv
+- **Containers**: Podman, podman-compose, buildah, skopeo (Docker-free, rootless by default)
 - **Languages**: Python 3, Node.js, TypeScript
 - **Utilities**: ripgrep, fd, fzf, jq, lazygit, lazydocker, btop, fastfetch
 

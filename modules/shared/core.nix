@@ -33,7 +33,7 @@
     just
     zoxide
     eza
-    lazydocker
+    lazydocker  # TUI for containers (works with Podman via socket emulation)
     btop
     fastfetch
     podman-compose
@@ -179,7 +179,8 @@
         style = "bold iris";
       };
 
-      docker_context = {
+      # Container context (works with Podman and Docker)
+      container = {
         symbol = "🐳 ";
         style = "bold foam";
       };
